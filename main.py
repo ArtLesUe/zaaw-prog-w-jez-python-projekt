@@ -1,16 +1,15 @@
 import asyncio
+import logging
+
 import tornado.web
 
-
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.write("Hello, world")
+from endpoint.rest_get_root import RestGetRoot
 
 
 def make_app():
     return tornado.web.Application(
         [
-            (r"/", MainHandler),
+            (r"/", RestGetRoot),
         ],
         debug=False
     )
@@ -19,6 +18,7 @@ def make_app():
 async def main():
     app = make_app()
     app.listen(8888)
+    logging.Logger.setLevel(logging.getLogger(), logging.INFO)
     await asyncio.Event().wait()
 
 
