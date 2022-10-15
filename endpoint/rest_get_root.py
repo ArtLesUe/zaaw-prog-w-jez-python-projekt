@@ -1,5 +1,4 @@
 import logging
-
 import tornado.web
 
 from typing import Optional, Awaitable
