@@ -3,3 +3,7 @@
 ### Informatyka, niestacjonarne, rok akademicki 2022 / 2023, semestr 3
 
 Projekt zaliczeniowy na zaliczenie przedmiotu "Zaawansowane programowanie w języku Python".
+
+### Autor
+
+  * Artur Leśnik
