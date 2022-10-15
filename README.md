@@ -7,3 +7,9 @@ Projekt zaliczeniowy na zaliczenie przedmiotu "Zaawansowane programowanie w jęz
 ### Autor
 
   * Artur Leśnik
+
+### Przygotowanie środowiska
+
+```commandline
+pip install tornado
+```
