@@ -9,7 +9,8 @@ class RestGetPrime(tornado.web.RequestHandler):
     """
     Klasa odpowiadająca za sprawdzanie, czy podana liczba jest liczbą pierwszą.
     """
-    def aks(self, num: int) -> bool:
+    @staticmethod
+    def aks(num: int) -> bool:
         """
         Funkcja sprawdza z wysokim prawdopodobieństwem czy liczba jest pierwsza.
 
