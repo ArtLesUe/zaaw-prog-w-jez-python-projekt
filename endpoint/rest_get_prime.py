@@ -26,4 +26,14 @@ class RestGetPrime(tornado.web.RequestHandler):
         """
         logging.info("[HTTP GET] /prime/<number> 200")
 
-        self.write(slug);
+        number: int = int(slug)
+
+        if number <= 0:
+            self.send_error(422)
+            return None
+
+        if number > 9223372036854775807:
+            self.send_error(422)
+            return None
+
+        self.write(str(number));

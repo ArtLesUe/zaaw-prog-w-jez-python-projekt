@@ -11,7 +11,7 @@ def make_app():
     return tornado.web.Application(
         [
             (r"/", RestGetRoot),
-            (r"/prime/([^/]+)", RestGetPrime)
+            (r"/prime/([0-9]+)", RestGetPrime)
         ],
         debug=False
     )
