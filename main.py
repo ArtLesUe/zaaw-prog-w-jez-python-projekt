@@ -5,13 +5,15 @@ import tornado.web
 
 from endpoint.rest_get_root import RestGetRoot
 from endpoint.rest_get_prime import RestGetPrime
+from endpoint.rest_post_picture_invert import RestPostPictureInvert
 
 
 def make_app():
     return tornado.web.Application(
         [
             (r"/", RestGetRoot),
-            (r"/prime/([0-9]+)", RestGetPrime)
+            (r"/prime/([0-9]+)", RestGetPrime),
+            (r"/picture/invert", RestPostPictureInvert)
         ],
         debug=False
     )
