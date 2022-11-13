@@ -12,4 +12,5 @@ Projekt zaliczeniowy na zaliczenie przedmiotu "Zaawansowane programowanie w jęz
 
 ```commandline
 pip install tornado
+pip install pillow
 ```

@@ -1,5 +1,7 @@
+import io
 import logging
 import tornado.web
+import PIL.Image as Image
 
 from typing import Optional, Awaitable
 
@@ -42,5 +44,6 @@ class RestPostPictureInvert(tornado.web.RequestHandler):
         """
         logging.info("[HTTP POST] / 200")
         self.set_header("Content-type", self.request.files['obraz'][0]['content_type'])
+        image = Image.open(io.BytesIO(self.request.files['obraz'][0]['body']))
         self.write(self.request.files['obraz'][0]['body'])
         return None
