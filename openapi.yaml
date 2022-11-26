@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  title: Leśnik API - endpoint czasowy
+  description: Dokumentacja endpointu zwracającego aktualną godzinę.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8888
+tags:
+  - name: time
+    description: Endpoint zwracający aktualną godzinę.
+paths:
+  /time:
+    get:
+      tags:
+        - time
+      summary: Zwraca aktualną godzinę
+      description: Zwraca aktualną godzinę w formacie JSON
+      operationId: getTime
+      responses:
+        '200':
+          description: Pomyślne pobranie danych
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Czas'          
+        '401':
+          description: Niewłaściwe dane logowania BASIC AUTH
+      security:
+        - basicAuth: []
+components:
+  schemas:
+    Czas:
+      type: object
+      properties:
+        time:
+          type: string
+  securitySchemes:
+    basicAuth:   
+      type: http
+      scheme: basic

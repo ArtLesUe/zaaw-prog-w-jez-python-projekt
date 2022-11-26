@@ -11,6 +11,17 @@ class RestGetTime(tornado.web.RequestHandler):
     """
     Klasa odpowiadająca za endpoint zwracający aktualną godzinę po zalogowaniu.
     """
+    def set_default_headers(self) -> Optional[Awaitable[None]]:
+        """
+        Definicja standardowych nagłówków dla odpowiedzi.
+
+        :return:
+        """
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header('Access-Control-Allow-Methods', 'GET')
+        return None
+
     def data_received(self, chunk: bytes) -> Optional[Awaitable[None]]:
         """
         Obsługa zdarzenia przesłania danych do przeglądarki.
