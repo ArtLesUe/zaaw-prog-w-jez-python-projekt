@@ -1,5 +1,5 @@
 FROM python:3.9-alpine
-LABEL maintainer="Artur Leśnik"
+MAINTAINER "Artur Leśnik"
 
 RUN mkdir -v /app
 
