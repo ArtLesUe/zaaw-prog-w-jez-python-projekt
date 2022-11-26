@@ -1,8 +1,8 @@
 import asyncio
 import logging
-
 import tornado.web
 
+from dotenv import load_dotenv
 from endpoint.rest_get_root import RestGetRoot
 from endpoint.rest_get_prime import RestGetPrime
 from endpoint.rest_post_picture_invert import RestPostPictureInvert
@@ -29,4 +29,5 @@ async def main():
 
 
 if __name__ == "__main__":
+    load_dotenv()
     asyncio.run(main())

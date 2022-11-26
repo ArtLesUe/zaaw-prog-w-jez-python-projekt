@@ -1,8 +1,12 @@
+import os
 import logging
 import tornado.web
 
 from typing import Optional, Awaitable
 from datetime import datetime
+
+API_AUTH_USER = os.getenv('API_AUTH_USER')
+API_AUTH_PASS = os.getenv('API_AUTH_PASS')
 
 
 class RestGetTime(tornado.web.RequestHandler):
