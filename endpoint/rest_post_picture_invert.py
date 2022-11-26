@@ -2,6 +2,7 @@ import io
 import logging
 import tornado.web
 import PIL.Image as Image
+import PIL.ImageChops as ImageChops
 
 from typing import Optional, Awaitable
 
@@ -43,7 +44,11 @@ class RestPostPictureInvert(tornado.web.RequestHandler):
         :return: None
         """
         logging.info("[HTTP POST] / 200")
-        self.set_header("Content-type", self.request.files['obraz'][0]['content_type'])
+        self.set_header("Content-type", "image/jpeg")
         image = Image.open(io.BytesIO(self.request.files['obraz'][0]['body']))
-        self.write(self.request.files['obraz'][0]['body'])
+        image.convert("RGB")
+        image_inv = ImageChops.invert(image)
+        image_data = io.BytesIO()
+        image_inv.save(image_data, format='jpeg')
+        self.write(image_data.getvalue())
         return None
