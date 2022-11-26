@@ -52,7 +52,7 @@ class RestGetPrime(tornado.web.RequestHandler):
         :param slug: liczba, która będzie sprawdzana pod kątem bycia liczbą pierwszą
         :return: None
         """
-        logging.info("[HTTP GET] /prime/<number> 200")
+        logging.info("[HTTP GET] /prime/" + str(slug) + " 200")
         exec_time: float = time.time()
 
         number: int = int(slug)

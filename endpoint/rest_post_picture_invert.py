@@ -43,7 +43,7 @@ class RestPostPictureInvert(tornado.web.RequestHandler):
 
         :return: None
         """
-        logging.info("[HTTP POST] / 200")
+        logging.info("[HTTP POST] /picture/invert 200")
         self.set_header("Content-type", "image/jpeg")
         image = Image.open(io.BytesIO(self.request.files['obraz'][0]['body']))
         image.convert("RGB")
