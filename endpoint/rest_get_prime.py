@@ -82,7 +82,12 @@ class RestGetPrime(tornado.web.RequestHandler):
             self.send_error(422)
             return None
 
-        if not self.fpf(number):
+        if len(str(abs(number))) <= 8 and not self.fpf(number):
+            self.write({"result": "nie jest liczbą pierwszą", "number": str(number),
+                        "exec": str((-exec_time + time.time()))})
+            return None
+
+        if len(str(abs(number))) > 8 and not self.aks(number):
             self.write({"result": "nie jest liczbą pierwszą", "number": str(number),
                         "exec": str((-exec_time + time.time()))})
             return None
