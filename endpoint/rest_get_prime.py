@@ -10,6 +10,23 @@ class RestGetPrime(tornado.web.RequestHandler):
     Klasa odpowiadająca za sprawdzanie, czy podana liczba jest liczbą pierwszą.
     """
     @staticmethod
+    def fpf(n: int) -> bool:
+        """
+        Funkcja sprawdza z wysokim prawdopodobieństwem czy liczba jest pierwsza.
+
+        :param n:int: liczba pierwsza do sprawdzenia
+        :return: bool
+        """
+        if n & 1 == 0:
+            return False
+        d = 3
+        while d * d <= n:
+            if n % d == 0:
+                return False
+            d = d + 2
+        return True
+
+    @staticmethod
     def aks(num: int) -> bool:
         """
         Funkcja sprawdza z wysokim prawdopodobieństwem czy liczba jest pierwsza.
@@ -65,7 +82,7 @@ class RestGetPrime(tornado.web.RequestHandler):
             self.send_error(422)
             return None
 
-        if not self.aks(number):
+        if not self.fpf(number):
             self.write({"result": "nie jest liczbą pierwszą", "number": str(number),
                         "exec": str((-exec_time + time.time()))})
             return None
