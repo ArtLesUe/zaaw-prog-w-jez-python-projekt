@@ -1,8 +1,13 @@
 import asyncio
 import logging
 import tornado.web
+import tornado.process
+import tornado.ioloop
 
 from dotenv import load_dotenv
+from tornado.netutil import bind_sockets
+from tornado.httpserver import TCPServer
+
 from endpoint.rest_get_root import RestGetRoot
 from endpoint.rest_get_prime import RestGetPrime
 from endpoint.rest_post_picture_invert import RestPostPictureInvert
@@ -21,13 +26,14 @@ def make_app():
     )
 
 
-async def main():
-    app = make_app()
-    app.listen(8888)
+def main():
+    server = tornado.httpserver.HTTPServer(make_app())
+    server.bind(8888)
+    server.start(0)
     logging.Logger.setLevel(logging.getLogger(), logging.INFO)
-    await asyncio.Event().wait()
+    tornado.ioloop.IOLoop.instance().start()
 
 
 if __name__ == "__main__":
     load_dotenv()
-    asyncio.run(main())
+    main()
