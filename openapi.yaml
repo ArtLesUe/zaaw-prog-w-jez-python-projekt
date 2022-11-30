@@ -4,7 +4,7 @@ info:
   description: Dokumentacja endpointu zwracającego aktualną godzinę.
   version: 1.0.0
 servers:
-  - url: http://localhost:8888
+  - url: https://zpwjp-api.zrobione-na-tip.top
 tags:
   - name: time
     description: Endpoint zwracający aktualną godzinę.
