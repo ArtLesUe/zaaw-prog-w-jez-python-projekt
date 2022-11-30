@@ -4,6 +4,7 @@ MAINTAINER "Artur Leśnik"
 RUN mkdir -v /app
 
 ADD endpoint /app/endpoint
+ADD modules /app/modules
 ADD .env /app
 ADD main.py /app
 
