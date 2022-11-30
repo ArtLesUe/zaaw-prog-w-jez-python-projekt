@@ -12,5 +12,5 @@ docker rm arturapi-balancer
 
 docker image rm arturapi:v1 --force
 docker image rm arturapi:v2 --force
-docker build --tag arturapi:v1 --file ../Dockerfile ../.
-docker build --tag arturapi:v2 --file ../Dockerfile2 ../.
+docker build --network=host --tag arturapi:v1 --file ../Dockerfile ../.
+docker build --network=host --tag arturapi:v2 --file ../Dockerfile2 ../.
