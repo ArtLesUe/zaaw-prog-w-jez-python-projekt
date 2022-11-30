@@ -12,6 +12,20 @@ def create_cache() -> None:
     return None
 
 
+def check_image_in_cache(md5: str) -> bytes:
+    """
+    Funkcja sprawdza, czy posiadamy już taki przetworzony obraz.
+
+    :param md5: str: identyfikator md5 obrazu do sprawdzenia w cache
+    :return: bytes (0: brak w cache, zawartość obrazu do zwrócenia)
+    """
+    if os.path.exists("image_cache/" + md5):
+        file = open("image_cache/" + md5, mode='rb')
+        content: bytes = file.read()
+        file.close()
+        return content
+    return bytes(0)
+
 
 def save_image_in_cache(md5: str, result: bytes) -> None:
     """

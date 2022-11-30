@@ -8,6 +8,7 @@ import PIL.ImageChops as ImageChops
 from typing import Optional, Awaitable
 
 from modules.image_cache import save_image_in_cache
+from modules.image_cache import check_image_in_cache
 
 
 class RestPostPictureInvert(tornado.web.RequestHandler):
@@ -50,6 +51,11 @@ class RestPostPictureInvert(tornado.web.RequestHandler):
         self.set_header("Content-type", "image/jpeg")
         image = Image.open(io.BytesIO(self.request.files['obraz'][0]['body']))
         image_md5: str = hashlib.md5(image.tobytes()).hexdigest()
+
+        img_cache_result: bytes = check_image_in_cache(image_md5)
+        if img_cache_result != bytes(0):
+            self.write(img_cache_result)
+            return None
 
         image.convert("RGB")
         image_inv = ImageChops.invert(image)
