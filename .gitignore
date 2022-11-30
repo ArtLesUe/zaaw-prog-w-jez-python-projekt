@@ -2,3 +2,4 @@
 /.idea/
 .env
 /prime_cache/
+/image_cache/
