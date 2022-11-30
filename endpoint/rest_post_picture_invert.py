@@ -1,10 +1,13 @@
 import io
+import hashlib
 import logging
 import tornado.web
 import PIL.Image as Image
 import PIL.ImageChops as ImageChops
 
 from typing import Optional, Awaitable
+
+from modules.image_cache import save_image_in_cache
 
 
 class RestPostPictureInvert(tornado.web.RequestHandler):
@@ -46,9 +49,12 @@ class RestPostPictureInvert(tornado.web.RequestHandler):
         logging.info("[HTTP POST] /picture/invert 200")
         self.set_header("Content-type", "image/jpeg")
         image = Image.open(io.BytesIO(self.request.files['obraz'][0]['body']))
+        image_md5: str = hashlib.md5(image.tobytes()).hexdigest()
+
         image.convert("RGB")
         image_inv = ImageChops.invert(image)
         image_data = io.BytesIO()
         image_inv.save(image_data, format='jpeg')
         self.write(image_data.getvalue())
+        save_image_in_cache(image_md5, image_data.getvalue())
         return None

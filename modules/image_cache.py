@@ -13,4 +13,15 @@ def create_cache() -> None:
 
 
 
+def save_image_in_cache(md5: str, result: bytes) -> None:
+    """
+    Zapisuje w cache wynik przetwarzania obrazu do późniejszego użycia.
 
+    :param md5: str: identyfikator md5 oryginalnego obrazu do cache
+    :param result: bytes: przetworzony obraz do zapisania w cache
+    :return: None
+    """
+    file = open("image_cache/" + md5, mode='wb')
+    file.write(result)
+    file.close()
+    return None
