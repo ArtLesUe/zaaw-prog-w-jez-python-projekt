@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 from tornado.netutil import bind_sockets
 from tornado.httpserver import TCPServer
 
+from modules.prime_cache import create_cache
+
 from endpoint.rest_get_root import RestGetRoot
 from endpoint.rest_get_prime import RestGetPrime
 from endpoint.rest_post_picture_invert import RestPostPictureInvert
@@ -36,4 +38,5 @@ def main():
 
 if __name__ == "__main__":
     load_dotenv()
+    create_cache()
     main()
