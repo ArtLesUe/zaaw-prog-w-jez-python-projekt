@@ -3,7 +3,9 @@ import tornado.web
 import time
 
 from typing import Optional, Awaitable
+
 from modules.prime_cache import check_prime_in_cache
+from modules.prime_cache import save_prime_in_cache
 
 
 class RestGetPrime(tornado.web.RequestHandler):
@@ -98,13 +100,16 @@ class RestGetPrime(tornado.web.RequestHandler):
         if len(str(abs(number))) <= 8 and not self.fpf(number):
             self.write({"result": "nie jest liczbą pierwszą", "number": str(number),
                         "exec": str((-exec_time + time.time()))})
+            save_prime_in_cache(number, False)
             return None
 
         if len(str(abs(number))) > 8 and not self.aks(number):
             self.write({"result": "nie jest liczbą pierwszą", "number": str(number),
                         "exec": str((-exec_time + time.time()))})
+            save_prime_in_cache(number, False)
             return None
 
         self.write({"result": "jest liczbą pierwszą", "number": str(number),
                     "exec": str((-exec_time + time.time()))})
+        save_prime_in_cache(number, True)
         return None

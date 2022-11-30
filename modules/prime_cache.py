@@ -25,3 +25,18 @@ def check_prime_in_cache(number: int) -> int:
         file.close()
         return int(content)
     return -1
+
+
+def save_prime_in_cache(number: int, result: bool) -> None:
+    """
+    Zapisuje w cache wynik przetwarzania liczby pierwszej do późniejszego użycia.
+
+    :param number: int: liczba pierwsza, która była sprawdzana
+    :param result: bool: wynik sprawdzania, czy liczba jest pierwszą
+    :return: None
+    """
+    result_int: int = 1 if result else 0
+    file = open("prime_cache/" + str(number), mode='w')
+    file.write(str(result_int))
+    file.close()
+    return None
