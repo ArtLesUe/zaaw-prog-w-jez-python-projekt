@@ -1,6 +1,7 @@
 import logging
 import tornado.web
 import time
+import sympy
 
 from typing import Optional, Awaitable
 
@@ -97,13 +98,7 @@ class RestGetPrime(tornado.web.RequestHandler):
                         "exec": str((-exec_time + time.time()))})
             return None
 
-        if len(str(abs(number))) <= 8 and not self.fpf(number):
-            self.write({"result": "nie jest liczbą pierwszą", "number": str(number),
-                        "exec": str((-exec_time + time.time()))})
-            save_prime_in_cache(number, False)
-            return None
-
-        if len(str(abs(number))) > 8 and not self.aks(number):
+        if not sympy.isprime(number):
             self.write({"result": "nie jest liczbą pierwszą", "number": str(number),
                         "exec": str((-exec_time + time.time()))})
             save_prime_in_cache(number, False)
