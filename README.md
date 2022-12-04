@@ -14,6 +14,7 @@ Projekt zaliczeniowy na zaliczenie przedmiotu "Zaawansowane programowanie w jęz
 pip install tornado
 pip install pillow
 pip install python-dotenv
+pip install locust
 
 cp -v .env.example .env
 ```
