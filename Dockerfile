@@ -15,5 +15,6 @@ WORKDIR /app
 RUN pip install tornado
 RUN pip install pillow
 RUN pip install python-dotenv
+RUN pip install sympy
 
 CMD ["python", "main.py"]
